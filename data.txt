@@ -1,4 +1,257 @@
 You tubedan va mohirdevdagi data science kursidan pythonni o'rganish.
 
-1-dars
+Suniy intelet bilan o'rganish
 
+**Python dasturlash tilida o'rganilgan va o'rganish kerak bo'lgan mavzular bo'yicha shaxsiy dokumentatsiya:**
+
+---
+
+### **1. Core Python Concepts**
+#### **List Comprehension**
+```python
+numbers = [1, 2, 3, 4, 5]
+squared_numbers = [number ** 2 for number in numbers]
+print(squared_numbers)  # [1, 4, 9, 16, 25]
+```
+
+#### **Dictionary Comprehension**
+```python
+squares = {number: number ** 2 for number in numbers}
+print(squares)  # {1: 1, 2: 4, 3: 9, 4: 16, 5: 25}
+```
+
+#### **Set Comprehension**
+```python
+odd_numbers = {number for number in numbers if number % 2 != 0}
+print(odd_numbers)  # {1, 3, 5}
+```
+
+#### **Generator Expression**
+```python
+numbers = (number for number in range(6))
+for number in numbers:
+    print(number)  # 0, 1, 2, 3, 4, 5
+```
+
+#### **String Manipulation**
+```python
+text = 'SalomPython'
+print(text[0])          # S
+print(text[0:5])        # Salom
+print(text[::-1])       # nohtyPmolaS
+print(text.upper())     # SALOMPYTHON
+print(text.lower())     # salompython
+print(text.split('o'))  # ['Sal', 'mPyth', 'n']
+print(text.replace('o', 'a'))  # SalamPythan
+```
+
+#### **List Manipulation**
+```python
+my_list = ['Python', 'Java', 'C++', 'C#', 'JavaScript']
+print(my_list[0])          # Python
+print(my_list[0:3])        # ['Python', 'Java', 'C++']
+print(my_list[::-1])       # ['JavaScript', 'C#', 'C++', 'Java', 'Python']
+my_list.append('Django')   # ['Python', 'Java', 'C++', 'C#', 'JavaScript', 'Django']
+my_list.remove('Java')     # ['Python', 'C++', 'C#', 'JavaScript', 'Django']
+```
+
+#### **Tuple Manipulation**
+```python
+my_tuple = ('Python', 'Java', 'C++', 'C#', 'JavaScript')
+print(my_tuple[0])          # Python
+print(my_tuple.count('Python'))  # 1
+print(my_tuple.index('C++'))     # 2
+```
+
+#### **Set Manipulation**
+```python
+my_set = {'Python', 'Java', 'C++', 'C#', 'JavaScript'}
+my_set.add('Django')        # {'Python', 'Java', 'C++', 'C#', 'JavaScript', 'Django'}
+my_set.remove('Java')       # {'Python', 'C++', 'C#', 'JavaScript', 'Django'}
+```
+
+#### **Dictionary Manipulation**
+```python
+my_dict = {'name': 'John', 'city': 'New York', 'country': 'USA'}
+print(my_dict['name'])      # John
+print(my_dict.keys())       # dict_keys(['name', 'city', 'country'])
+print(my_dict.values())     # dict_values(['John', 'New York', 'USA'])
+my_dict.pop('city')         # {'name': 'John', 'country': 'USA'}
+```
+
+#### **Map, Filter, Reduce**
+```python
+from functools import reduce
+
+# Map
+squared_numbers = list(map(lambda x: x ** 2, numbers))
+print(squared_numbers)  # [1, 4, 9, 16, 25]
+
+# Filter
+even_numbers = list(filter(lambda x: x % 2 == 0, numbers))
+print(even_numbers)  # [2, 4]
+
+# Reduce
+product = reduce(lambda x, y: x * y, numbers)
+print(product)  # 120
+```
+
+#### **Decorators**
+```python
+def my_decorator(func):
+    def wrapper():
+        print("Before function call")
+        func()
+        print("After function call")
+    return wrapper
+
+@my_decorator
+def say_hello():
+    print("Hello!")
+
+say_hello()
+# Output:
+# Before function call
+# Hello!
+# After function call
+```
+
+#### **Generators**
+```python
+def infinite_sequence():
+    num = 0
+    while True:
+        yield num
+        num += 1
+
+gen = infinite_sequence()
+print(next(gen))  # 0
+print(next(gen))  # 1
+```
+
+#### **Itertools ### **Itertools**
+```python
+import itertools
+
+# Count
+for i in itertools.count(10):
+    if i > 15:
+        break
+    print(i)  # 10, 11, 12, 13, 14, 15
+
+# Cycle
+count = 0
+for item in itertools.cycle(['A', 'B', 'C']):
+    if count > 5:
+        break
+    print(item)  # A, B, C, A, B, C
+    count += 1
+
+# Repeat
+for item in itertools.repeat('Hello', 3):
+    print(item)  # Hello, Hello, Hello
+
+# Combinations
+items = ['A', 'B', 'C']
+combinations = list(itertools.combinations(items, 2))
+print(combinations)  # [('A', 'B'), ('A', 'C'), ('B', 'C')]
+
+# Permutations
+permutations = list(itertools.permutations(items, 2))
+print(permutations)  # [('A', 'B'), ('A', 'C'), ('B', 'A'), ('B', 'C'), ('C', 'A'), ('C', 'B')]
+```
+
+### **Advanced Libraries**
+#### **NumPy**
+```python
+import numpy as np
+
+# Creating an array
+array = np.array([1, 2, 3, 4, 5])
+print(array)  # [1 2 3 4 5]
+
+# Array operations
+array_squared = array ** 2
+print(array_squared)  # [ 1  4  9 16 25]
+
+# Reshaping
+reshaped_array = array.reshape(5, 1)
+print(reshaped_array)
+# [[1]
+#  [2]
+#  [3]
+#  [4]
+#  [5]]
+```
+
+#### **Pandas**
+```python
+import pandas as pd
+
+# Creating a DataFrame
+data = {
+    'Name': ['Alice', 'Bob', 'Charlie'],
+    'Age': [25, 30, 35]
+}
+df = pd.DataFrame(data)
+print(df)
+#      Name  Age
+# 0   Alice   25
+# 1     Bob   30
+# 2 Charlie   35
+
+# DataFrame operations
+print(df['Age'].mean())  # 30.0
+print(df[df['Age'] > 28])  # Filtered DataFrame
+```
+
+#### **Matplotlib**
+```python
+import matplotlib.pyplot as plt
+
+# Simple line plot
+x = [1, 2, 3, 4, 5]
+y = [2, 3, 5, 7, 11]
+plt.plot(x, y)
+plt.title('Simple Line Plot')
+plt.xlabel('X-axis')
+plt.ylabel('Y-axis')
+plt.show()
+```
+
+#### **Requests**
+```python
+import requests
+
+# Making a GET request
+response = requests.get('https://api.github.com')
+print(response.status_code)  # 200
+print(response.json())  # JSON response from the API
+```
+
+#### **Flask**
+```python
+from flask import Flask
+
+app = Flask(__name__)
+
+@app.route('/')
+def home():
+    return "Hello, Flask!"
+
+if __name__ == '__main__':
+    app.run(debug=True)
+```
+
+#### **Django**
+```python
+# In Django, you would typically create a view like this:
+from django.http import HttpResponse
+
+def home(request):
+    return HttpResponse("Hello, Django!")
+```
+
+### **Conclusion**
+- **O'rganish jarayoni:** Python dasturlash tilida kuchli junior darajasiga erishish uchun yuqoridagi mavzularni o'z ichiga olgan bilimlarni o'zlashtirish zarur.
+- **Amaliyot:** Har bir mavzuni amaliyotda qo'llash va loyihalarda ishlatish orqali bilimlarni mustahkamlash muhimdir. ### **Python dasturlash tilida o'rganilgan va o'rganish kerak bo'lgan mavzular bo'yicha shaxsiy dokumentatsiya:**
